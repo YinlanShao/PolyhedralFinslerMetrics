@@ -12,6 +12,37 @@ import numpy as np
 import matplotlib.pyplot as plt
 from scipy.stats import linregress
 
+
+
+
+# Input: an list of ordered points (x,y)
+# Output: true if it is convex, false otherwise
+def is_convex(ordered_points):
+    # n is the number of points
+    n = len(ordered_points)
+    
+    ordered_points.append(ordered_points[0])
+    ordered_points.append(ordered_points[1])
+    
+    for i in range(0,n):
+        p1 = ordered_points[i]
+        p2 = ordered_points[i+1]
+        p3 = ordered_points[i+2]
+        x1 = p2[0] - p1[0]
+        y1 = p2[1] - p1[1]
+        x2 = p3[0] - p2[0]
+        y2 = p3[1] - p2[1]
+        cross_product = x1*y2 - x2*y1
+        #print(cross_product)
+        if cross_product < 0 :
+            return False
+
+    return True
+
+
+
+
+
 # From Stack Overflow
 def cartesian_to_polar(pair):
     x = pair[0]
